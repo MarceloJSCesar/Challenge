@@ -13,9 +13,11 @@ class _HomeViewState extends State<HomeView> {
       'question': 'What\'s your favorite food?',
       'answers': [
         {
-          'answer': 'Fish',
+          'answer': Icon(Icons.add),
         },
-        {'answer': 'FullDice'}
+        {
+          'answer': Icon(Icons.ac_unit),
+        }
       ],
     },
     {
@@ -38,6 +40,13 @@ class _HomeViewState extends State<HomeView> {
       ],
     }
   ];
+
+  // List<Icon> iconsQuestion = [
+  //   Icon(Icons.add),
+  //   Icon(Icons.youtube_searched_for),
+  //   Icon(Icons.outlet_rounded),
+  //   Icon(Icons.ac_unit)
+  // ];
   void nextQuestion() {
     setState(() {
       _indexPos += 1;
@@ -100,12 +109,14 @@ class _HomeViewState extends State<HomeView> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 ...(_question[_indexPos]['answers']
-                                        as List<Map<String, Object>>)
+                                        as List<Map<String, dynamic>>)
                                     .map((answer) {
                                   return TextButton(
-                                    child: Text(
-                                      answer['answer'],
-                                    ),
+                                    // djam sabi undi ki nha question do tipo icon sta,
+                                    // purisso nsta fazel directo usanso um ternario
+                                    child: _indexPos == 0
+                                        ? answer['answer']
+                                        : Text(answer['answer']),
                                     onPressed: () => nextQuestion(),
                                   );
                                 }).toList(),
