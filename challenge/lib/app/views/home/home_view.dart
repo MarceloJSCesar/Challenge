@@ -24,15 +24,15 @@ class _HomeViewState extends State<HomeView> {
       ],
     },
   ];
-  void _nextQuestion() {
+  void _nextQuestion(int value) {
     setState(() {
-      _questionIndex += 1;
+      _questionIndex += value;
     });
   }
 
-  void _previousQuestion() {
+  void _previousQuestion(int value) {
     setState(() {
-      _questionIndex -= 1;
+      _questionIndex -= value;
     });
   }
 
@@ -55,7 +55,8 @@ class _HomeViewState extends State<HomeView> {
                     children: <Widget>[
                       _questionIndex >= 1
                           ? TextButton(
-                              onPressed: () => _previousQuestion(),
+                              onPressed: () =>
+                                  _previousQuestion(_questionIndex),
                               child: Icon(Icons.arrow_left))
                           : Container(),
                       ButtonNext(_nextQuestion),
@@ -72,7 +73,7 @@ class _HomeViewState extends State<HomeView> {
                           .map((answer) {
                         return TextButton(
                           child: Text(answer['answer']),
-                          onPressed: () => _nextQuestion(),
+                          onPressed: () => _nextQuestion(_questionIndex),
                         );
                       }).toList(),
                     ],
