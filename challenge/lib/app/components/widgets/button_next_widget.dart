@@ -22,7 +22,7 @@ class ButtonNext extends StatelessWidget {
           size: 18,
         ),
       ),
-      onTap: () => nextQuestion(),
+      onTap: nextQuestion,
     );
   }
 }
