@@ -1,6 +1,10 @@
-import 'package:challenge/core/components/widgets/custom_question_title_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import '../../store/question_home_store.dart';
+import '../../components/widgets/custom_siexBox_widget.dart';
 import '../../components/widgets/custom_button_next_widget.dart';
+import '../../components/widgets/custom_question_title_widget.dart';
+import '../../components/widgets/custom_button_previous_widget.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -8,7 +12,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  int _questionIndex = 0;
+  final questionHomeStore = QuestionHomeStore();
   final _questions = const [
     {
       'question': 'You have a Dog ?',
@@ -25,28 +29,28 @@ class _HomeViewState extends State<HomeView> {
       ],
     },
   ];
-  void _nextQuestion() {
-    setState(() {
-      _questionIndex += 1;
-    });
-  }
+  // void _nextQuestion() {
+  //   setState(() {
+  //     _questionIndex += 1;
+  //   });
+  // }
 
-  void _previousQuestion() {
-    setState(() {
-      _questionIndex -= 1;
-    });
-  }
+  // void _previousQuestion() {
+  //   setState(() {
+  //     _questionIndex -= 1;
+  //   });
+  // }
 
-  void _playAgain(int value) {
-    setState(() {
-      _questionIndex = value;
-    });
-  }
+  // void _playAgain(int value) {
+  //   setState(() {
+  //     _questionIndex = value;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _questionIndex < _questions.length
+    return Scaffold(body: Observer(builder: (context) {
+      return questionHomeStore.questionIndex < _questions.length
           ? Column(
               children: <Widget>[
                 Container(
@@ -54,12 +58,12 @@ class _HomeViewState extends State<HomeView> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      _questionIndex >= 1
-                          ? TextButton(
-                              onPressed: _previousQuestion,
-                              child: Icon(Icons.arrow_left))
+                      questionHomeStore.questionIndex >= 1
+                          ? CustomButtonPrevious(
+                              questionHomeStore.previousQuestion)
                           : Container(),
-                      CustomButtonNext(_nextQuestion),
+                      CustomSizedBox(widht: 20),
+                      CustomButtonNext(questionHomeStore.nextQuestion),
                     ],
                   ),
                 ),
@@ -69,13 +73,14 @@ class _HomeViewState extends State<HomeView> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       CustomQuestionTitle(
-                          _questions[_questionIndex]['question']),
-                      ...(_questions[_questionIndex]['answers']
+                          _questions[questionHomeStore.questionIndex]
+                              ['question']),
+                      ...(_questions[questionHomeStore.questionIndex]['answers']
                               as List<Map<String, Object>>)
                           .map((answer) {
                         return TextButton(
                           child: Text(answer['answer']),
-                          onPressed: _nextQuestion,
+                          onPressed: questionHomeStore.nextQuestion,
                         );
                       }).toList(),
                     ],
@@ -85,8 +90,9 @@ class _HomeViewState extends State<HomeView> {
             )
           : Center(
               child: TextButton(
-                  child: Text('Start Again'), onPressed: () => _playAgain(0)),
-            ),
-    );
+                  child: Text('Start Again'),
+                  onPressed: () => questionHomeStore.playAgain()),
+            );
+    }));
   }
 }

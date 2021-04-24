@@ -7,6 +7,7 @@ class ChallengeApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomeView(),
+      theme: ThemeData(iconTheme: IconThemeData()),
     );
   }
 }
