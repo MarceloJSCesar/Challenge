@@ -1,5 +1,6 @@
+import 'package:challenge/core/components/widgets/custom_question_title_widget.dart';
 import 'package:flutter/material.dart';
-import '../../components/widgets/button_next_widget.dart';
+import '../../components/widgets/custom_button_next_widget.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -17,7 +18,7 @@ class _HomeViewState extends State<HomeView> {
       ],
     },
     {
-      'question': 'You have a Dog ?',
+      'question': 'You have a Dogi ?',
       'answers': [
         {'answer': 'WOU'},
         {'answer': 'wAA'}
@@ -58,7 +59,7 @@ class _HomeViewState extends State<HomeView> {
                               onPressed: _previousQuestion,
                               child: Icon(Icons.arrow_left))
                           : Container(),
-                      ButtonNext(_nextQuestion),
+                      CustomButtonNext(_nextQuestion),
                     ],
                   ),
                 ),
@@ -67,6 +68,8 @@ class _HomeViewState extends State<HomeView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
+                      CustomQuestionTitle(
+                          _questions[_questionIndex]['question']),
                       ...(_questions[_questionIndex]['answers']
                               as List<Map<String, Object>>)
                           .map((answer) {
