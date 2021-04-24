@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../components/button_next_widget.dart';
+import '../../components/widgets/button_next_widget.dart';
 
 class HomeView extends StatefulWidget {
   @override

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'text_style_widget.dart';
+import '../text_style_component.dart';
 
 class QuestionTitle extends StatelessWidget {
   final String questionTitle;
