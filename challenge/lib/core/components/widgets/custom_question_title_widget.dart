@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../text_style_component.dart';
 
-class QuestionTitle extends StatelessWidget {
+class CustomQuestionTitle extends StatelessWidget {
   final String questionTitle;
-  QuestionTitle(this.questionTitle);
+  CustomQuestionTitle(this.questionTitle);
   @override
   Widget build(BuildContext context) {
     return Container(

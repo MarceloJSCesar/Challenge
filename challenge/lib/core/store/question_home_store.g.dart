@@ -25,6 +25,42 @@ mixin _$QuestionHomeStore on _QuestionHomeStoreBase, Store {
     });
   }
 
+  final _$_QuestionHomeStoreBaseActionController =
+      ActionController(name: '_QuestionHomeStoreBase');
+
+  @override
+  void nextQuestion() {
+    final _$actionInfo = _$_QuestionHomeStoreBaseActionController.startAction(
+        name: '_QuestionHomeStoreBase.nextQuestion');
+    try {
+      return super.nextQuestion();
+    } finally {
+      _$_QuestionHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void previousQuestion() {
+    final _$actionInfo = _$_QuestionHomeStoreBaseActionController.startAction(
+        name: '_QuestionHomeStoreBase.previousQuestion');
+    try {
+      return super.previousQuestion();
+    } finally {
+      _$_QuestionHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void playAgain() {
+    final _$actionInfo = _$_QuestionHomeStoreBaseActionController.startAction(
+        name: '_QuestionHomeStoreBase.playAgain');
+    try {
+      return super.playAgain();
+    } finally {
+      _$_QuestionHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''

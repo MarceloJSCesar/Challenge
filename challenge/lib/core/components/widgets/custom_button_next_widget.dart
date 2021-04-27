@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ButtonNext extends StatelessWidget {
+class CustomButtonNext extends StatelessWidget {
   final Function nextQuestion;
-  ButtonNext(this.nextQuestion);
+  CustomButtonNext(this.nextQuestion);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
